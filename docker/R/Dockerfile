@@ -49,4 +49,6 @@ RUN install2.r --error \
 COPY extras.R .
 RUN Rscript extras.R && rm extras.R
 
-RUN R -e "keras::install_keras()"
+RUN R -e "reticulate::install_miniconda()"
+
+RUN echo "keras::install_keras()" | R --no-save

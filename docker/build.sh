@@ -37,13 +37,13 @@ while getopts "nu:r:t:p:" o; do
             SITS_BUILD_MODE="--no-cache"
             ;;
         p)
-            SITS_TAG_VERSION=${OPTARG}
+            SITS_TAG_SUFFIX=${OPTARG}
             ;;
         r)
             SITS_R_VERSION=${OPTARG}
             ;;
         t)
-            SITS_TAG_SUFFIX=${OPTARG}
+            SITS_TAG_VERSION=${OPTARG}
             ;;
         u)
             SITS_UBUNTU_VERSION=${OPTARG}
