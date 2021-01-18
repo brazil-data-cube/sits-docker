@@ -7,21 +7,26 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 #
 
-set -eoux pipefail
+set -eou pipefail
+cd docker
 
 #
 # General variables
 #
 SITS_BUILD_MODE=""
-SITS_R_VERSION="4.0.3"
 SITS_TAG_PREFIX="bdc"
+SITS_TAG_VERSION="0.9.8"
+
+SITS_R_VERSION="4.0.3"
+SITS_ENVIRONMENT_TYPE="full"
+
 SITS_UBUNTU_VERSION="20.04"
 
 #
 # General functions
 #
 usage() {
-    echo "Usage: $0 [-n] [-u <18.04|20.04>] [-r <4.0.1|4.0.2|4.0.3>] [-t <0.9.8>] [-p <bdc|registry.dpi.inpe.br>]" 1>&2;
+    echo "Usage: $0 [-n] [-u <18.04|20.04>] [-r <4.0.1|4.0.2|4.0.3>] [-t <0.9.8>] [-p <bdc|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
 
     exit 1;
 }
@@ -29,7 +34,7 @@ usage() {
 #
 # Get build options
 #
-while getopts "nu:r:t:p:" o; do
+while getopts "nu:r:t:p:h:e" o; do
     case "${o}" in
         n)
             SITS_BUILD_MODE="--no-cache"
@@ -46,16 +51,14 @@ while getopts "nu:r:t:p:" o; do
         u)
             SITS_UBUNTU_VERSION=${OPTARG}
             ;;
+        h)
+            usage
+            ;;
         *)
             usage
             ;;
     esac
 done
-shift $((OPTIND-1))
-
-if [ -z "${SITS_TAG_SUFFIX}" ]; then
-    usage
-fi
 
 #
 # Build a Linux Ubuntu image with all the dependencies already installed
@@ -80,6 +83,7 @@ cd ../R
 SITS_R_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-ubuntu-${SITS_UBUNTU_VERSION}-r:${SITS_R_VERSION}"
 docker build ${SITS_BUILD_MODE} \
        --build-arg BASE_IMAGE=${SITS_UBUNTU_IMAGE_TAG} \
+       --build-arg SITS_ENVIRONMENT_TYPE=${SITS_ENVIRONMENT_TYPE} \
        -t ${SITS_R_DOCKER_IMAGE_TAG} \
        --file Dockerfile  .
 
