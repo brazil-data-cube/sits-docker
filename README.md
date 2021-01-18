@@ -1,4 +1,4 @@
-# SITS Docker Images <img src=".github/sits-docker-sticker.png" align="right" width="120"/>
+# SITS Docker Images <img src=".github/sits-docker-sticker.png" align="right" width="150"/>
 
 This is the official repository of the [SITS R package](https://github.com/e-sensing/sits) Docker images. 
 
