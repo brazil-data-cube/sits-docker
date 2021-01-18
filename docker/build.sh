@@ -111,7 +111,7 @@ echo "Building RStudio for SITS image..."
 
 cd ../RStudio
 
-SITS_RSTUDIO_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-ubuntu-${SITS_UBUNTU_VERSION}-rstudio:${SITS_TAG_VERSION}"
+SITS_RSTUDIO_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-ubuntu-${SITS_UBUNTU_VERSION}-r-${SITS_R_VERSION}-rstudio:${SITS_TAG_VERSION}"
 
 docker build ${SITS_BUILD_MODE} \
        --build-arg BASE_IMAGE=${SITS_DOCKER_IMAGE_TAG} \
