@@ -28,4 +28,10 @@ RUN apt-get update \
     protobuf-compiler \
     sqlite3 \
     tk-dev \
-    unixodbc-dev
+    unixodbc-dev \
+    gdal-bin \
+    texlive-latex-base \
+    rsync \
+    htop \
+    vim \
+    git

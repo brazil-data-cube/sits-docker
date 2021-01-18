@@ -4,4 +4,3 @@ FROM ${BASE_IMAGE}
 COPY install_sits.R .
 
 RUN Rscript install_sits.R && rm install_sits.R
-
