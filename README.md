@@ -14,8 +14,6 @@ To build the images contained in this repository, it is possible to use the `bui
 - `-e`: SITS environment type (`full` or `minimal`. Default is `full`)
 - `-h`: show a help message
 
-> **Note**: The `-t` parameter defines only the name of the SITS tag. The version used is the most recent in the package repository
-
 Below is an example of using the script that builds the images with `Ubuntu 20.04`, `R 4.0.3`. The tag name defined for the SITS image is 0.9.8.
 
 ```shell

@@ -49,10 +49,8 @@ RUN install2.r --error \
 # install user extra packages
 COPY extras.R .
 
+ARG SITS_TAG_VERSION
 ARG SITS_ENVIRONMENT_TYPE=full
-RUN wget https://raw.githubusercontent.com/e-sensing/sits/master/DESCRIPTION \
+RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
     && Rscript extras.R \
     && rm extras.R DESCRIPTION
-
-RUN R -e "reticulate::install_miniconda()" \ 
-    && R -e "keras::install_keras()"

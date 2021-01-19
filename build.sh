@@ -83,6 +83,7 @@ cd ../R
 SITS_R_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-ubuntu-${SITS_UBUNTU_VERSION}-r:${SITS_R_VERSION}"
 docker build ${SITS_BUILD_MODE} \
        --build-arg BASE_IMAGE=${SITS_UBUNTU_IMAGE_TAG} \
+       --build-arg SITS_TAG_VERSION=${SITS_TAG_VERSION} \
        --build-arg SITS_ENVIRONMENT_TYPE=${SITS_ENVIRONMENT_TYPE} \
        -t ${SITS_R_DOCKER_IMAGE_TAG} \
        --file Dockerfile  .
