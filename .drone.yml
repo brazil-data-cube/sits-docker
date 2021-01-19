@@ -6,6 +6,8 @@ steps:
     image: plugins/docker
     commands:
       - sh build.sh -u 20.04 -r 4.0.3 -p brazildatacube -t ${DRONE_SEMVER}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     when:
       event:
         - tag
@@ -22,6 +24,8 @@ steps:
       tags:
         - latest
         - ${DRONE_SEMVER}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     when:
       event:
         - tag
@@ -38,6 +42,8 @@ steps:
       tags:
         - latest
         - ${DRONE_SEMVER}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     when:
       event:
         - tag
