@@ -1,0 +1,43 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build-sits-images
+    image: plugins/docker
+    commands:
+      - ./build.sh -u 20.04 -r 4.0.3 -p brazildatacube -t ${DRONE_SEMVER}
+    when:
+      event:
+        - tag
+
+  - name: publish-sits-image-on-dockerhub
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DOCKERHUB_USER
+      password:
+        from_secret: DOCKERHUB_PASS
+      dockerfile: docker/sits/Dockerfile
+      repo: brazildatacube/sits
+      tags:
+        - latest
+        - ${DRONE_SEMVER}
+    when:
+      event:
+        - tag
+
+  - name: publish-rstudio-image-on-dockerhub
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DOCKERHUB_USER
+      password:
+        from_secret: DOCKERHUB_PASS
+      dockerfile: docker/RStudio/Dockerfile
+      repo: brazildatacube/sits-rstudio
+      tags:
+        - latest
+        - ${DRONE_SEMVER}
+    when:
+      event:
+        - tag
