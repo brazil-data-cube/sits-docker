@@ -7,7 +7,7 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 #
 
-set -eou pipefail
+set -eou
 cd docker
 
 #

@@ -5,7 +5,7 @@ steps:
   - name: build-sits-images
     image: plugins/docker
     commands:
-      - /bin/bash build.sh -u 20.04 -r 4.0.3 -p brazildatacube -t ${DRONE_SEMVER}
+      - sh build.sh -u 20.04 -r 4.0.3 -p brazildatacube -t ${DRONE_SEMVER}
     when:
       event:
         - tag
