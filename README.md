@@ -6,8 +6,7 @@ This is the official repository of the [SITS R package](https://github.com/e-sen
 
 To build the images contained in this repository, it is possible to use the `build.sh` utility script. This script presents options for the customization of the images generated for the use of the SITS package. The script has the following options that can be used to customize the generated images:
 
-- `-n`: Build with `--no-cache` flag
-- `-u`: Ubuntu version (18.04 or 20.04. Default is `20.04`)
+- `-n`: Build with `--no-cache` flag 
 - `-r`: R version (`4.0.1`, `4.0.2`, `4.0.3`. Default is `4.0.3`)
 - `-t`: SITS Tag version used in generated image (Default is `0.9.8`)
 - `-p`: Image name prefix (Default is `bdc`)
