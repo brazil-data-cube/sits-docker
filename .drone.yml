@@ -12,8 +12,10 @@ steps:
       context: docker/ubuntu
       dockerfile: docker/ubuntu/Dockerfile
       repo: brazildatacube/sits-base
+      cache_from: "brazildatacube/sits-base:latest"
       tags:
         - ubuntu-20.04
+        - latest
     when:
       event:
         - tag
@@ -28,8 +30,10 @@ steps:
       context: docker/R
       dockerfile: docker/R/Dockerfile
       repo: brazildatacube/sits-r
+      cache_from: "brazildatacube/sits-r:latest"
       tags:
         - "4"
+        - latest
       build_args:
         - SITS_ENVIRONMENT_TYPE=full
         - SITS_TAG_VERSION=v${DRONE_SEMVER}
@@ -48,6 +52,7 @@ steps:
       context: docker/sits
       dockerfile: docker/sits/Dockerfile
       repo: brazildatacube/sits
+      cache_from: "brazildatacube/sits:latest"
       tags:
         - latest
         - ${DRONE_SEMVER}
@@ -67,8 +72,10 @@ steps:
       context: docker/RStudio
       dockerfile: docker/RStudio/Dockerfile
       repo: brazildatacube/sits-rstudio
+      cache_from: "brazildatacube/sits-rstudio:latest"
       tags:
         - "1.4.1103"
+        - latest
       build_args:
         - BASE_IMAGE=brazildatacube/sits:${DRONE_SEMVER}
     when:
