@@ -2,48 +2,75 @@ kind: pipeline
 name: default
 
 steps:
-  - name: build-sits-images
-    image: plugins/docker
-    commands:
-      - sh build.sh -u 20.04 -r 4.0.3 -p brazildatacube -t ${DRONE_SEMVER}
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    when:
-      event:
-        - tag
-
-  - name: publish-sits-image-on-dockerhub
+  - name: publish-ubuntu-sits
     image: plugins/docker
     settings:
       username:
         from_secret: DOCKERHUB_USER
       password:
         from_secret: DOCKERHUB_PASS
+      context: docker/ubuntu
+      dockerfile: docker/ubuntu/Dockerfile
+      repo: brazildatacube/sits-base
+      tags:
+        - ubuntu-20.04
+    when:
+      event:
+        - tag
+
+  - name: publish-R-sits
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DOCKERHUB_USER
+      password:
+        from_secret: DOCKERHUB_PASS
+      context: docker/R
+      dockerfile: docker/R/Dockerfile
+      repo: brazildatacube/sits-r
+      tags:
+        - "4"
+      build_args:
+        - SITS_ENVIRONMENT_TYPE=full
+        - SITS_TAG_VERSION=v${DRONE_SEMVER}
+        - BASE_IMAGE=brazildatacube/sits-base:ubuntu-20.04
+    when:
+      event:
+        - tag
+
+  - name: publish-sits
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DOCKERHUB_USER
+      password:
+        from_secret: DOCKERHUB_PASS
+      context: docker/sits
       dockerfile: docker/sits/Dockerfile
       repo: brazildatacube/sits
       tags:
         - latest
         - ${DRONE_SEMVER}
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      build_args:
+        - BASE_IMAGE=brazildatacube/sits-r:4
     when:
       event:
         - tag
 
-  - name: publish-rstudio-image-on-dockerhub
+  - name: publish-rstudio-sits
     image: plugins/docker
     settings:
       username:
         from_secret: DOCKERHUB_USER
       password:
         from_secret: DOCKERHUB_PASS
+      context: docker/RStudio
       dockerfile: docker/RStudio/Dockerfile
       repo: brazildatacube/sits-rstudio
       tags:
-        - latest
-        - ${DRONE_SEMVER}
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
+        - "1.4.1103"
+      build_args:
+        - BASE_IMAGE=brazildatacube/sits:${DRONE_SEMVER}
     when:
       event:
         - tag
