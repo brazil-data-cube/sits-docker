@@ -7,7 +7,7 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 #
 
-set -eou
+set -eou pipefail
 cd docker
 
 #
@@ -26,7 +26,7 @@ SITS_UBUNTU_VERSION="20.04"
 # General functions
 #
 usage() {
-    echo "Usage: $0 [-n] [-u <18.04|20.04>] [-r <4.0.1|4.0.2|4.0.3>] [-t <0.9.8>] [-p <bdc|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
+    echo "Usage: $0 [-n] [-r <4.0.1|4.0.2|4.0.3>] [-t <0.9.8>] [-p <bdc|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
 
     exit 1;
 }
@@ -34,7 +34,7 @@ usage() {
 #
 # Get build options
 #
-while getopts "nu:r:t:p:h:e" o; do
+while getopts "n:r:t:p:h:e" o; do
     case "${o}" in
         n)
             SITS_BUILD_MODE="--no-cache"
@@ -47,9 +47,6 @@ while getopts "nu:r:t:p:h:e" o; do
             ;;
         t)
             SITS_TAG_VERSION=${OPTARG}
-            ;;
-        u)
-            SITS_UBUNTU_VERSION=${OPTARG}
             ;;
         h)
             usage
