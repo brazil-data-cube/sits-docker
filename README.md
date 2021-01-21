@@ -25,7 +25,10 @@ docker image ls | grep sits
 ```
 
 ```
-TO BE DONE
+bdc/sits-ubuntu-20.04-r-4-rstudio     0.9.8       739141bf2cd8   3 hours ago     7.13GB
+bdc/sits-ubuntu-20.04-r-4             0.9.8       6dbda66e0448   3 hours ago     6.17GB
+bdc/sits-ubuntu-20.04-r               4           24d51a565c89   3 hours ago     5.92GB
+bdc/sits-ubuntu                       20.04       5a39c6e1312d   5 hours ago     1.29GB
 ```
 
 ## Running Containers
