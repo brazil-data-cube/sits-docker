@@ -44,7 +44,7 @@ docker run -it \
            --name my-sits-ubuntu \
            --volume ${PWD}/data:/data \
            --volume ${PWD}/scripts:/scripts \
-           bdc/sits-ubuntu-20.04-r-4.0.3:0.9.8
+           bdc/sits-ubuntu-20.04-r-4:0.9.8
 ```
 
 ### RStudio container with SITS Package
@@ -57,7 +57,7 @@ docker run --detach \
            --name my-sits-rstudio \
            --volume ${PWD}/data:/data \
            --volume ${PWD}/scripts:/scripts \
-           bdc/sits-0.9.8-rstudio:1.4
+           bdc/sits-ubuntu-20.04-r-4-rstudio:0.9.8
 ```
 
 Open the URL `http://127.0.0.1:8787` in a web browser:
