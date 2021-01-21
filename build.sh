@@ -17,7 +17,7 @@ SITS_BUILD_MODE=""
 SITS_TAG_PREFIX="bdc"
 SITS_TAG_VERSION="0.9.8"
 
-SITS_R_VERSION="4.0.3"
+SITS_R_VERSION="4"
 SITS_ENVIRONMENT_TYPE="full"
 
 SITS_UBUNTU_VERSION="20.04"
@@ -26,7 +26,7 @@ SITS_UBUNTU_VERSION="20.04"
 # General functions
 #
 usage() {
-    echo "Usage: $0 [-n] [-r <4.0.1|4.0.2|4.0.3>] [-t <0.9.8>] [-p <bdc|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
+    echo "Usage: $0 [-n] [-t <0.9.8>] [-p <bdc|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
 
     exit 1;
 }
@@ -34,16 +34,16 @@ usage() {
 #
 # Get build options
 #
-while getopts "n:r:t:p:h:e" o; do
+while getopts "n:t:p:h:e" o; do
     case "${o}" in
+        e)
+            SITS_ENVIRONMENT_TYPE=${OPTARG}
+            ;;
         n)
             SITS_BUILD_MODE="--no-cache"
             ;;
         p)
             SITS_TAG_SUFFIX=${OPTARG}
-            ;;
-        r)
-            SITS_R_VERSION=${OPTARG}
             ;;
         t)
             SITS_TAG_VERSION=${OPTARG}
