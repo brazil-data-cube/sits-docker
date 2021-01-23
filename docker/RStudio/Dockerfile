@@ -11,9 +11,9 @@ RUN apt-get update \
     tini
 
 ARG RSTUDIO_VERSION=rstudio-server-1.4.1103-amd64
-RUN wget https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_VERSION}.deb \
-    && gdebi rstudio-server-1.4.1103-amd64.deb -n \
-    && rm rstudio-server-1.4.1103-amd64.deb
+RUN wget https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_VERSION}.deb --no-check-certificate \
+    && gdebi ${RSTUDIO_VERSION}.deb -n \
+    && rm ${RSTUDIO_VERSION}.deb
 
 # Configure tini entrypoint
 ENTRYPOINT ["tini", "--"]
