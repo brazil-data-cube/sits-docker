@@ -1,46 +1,35 @@
 ARG BASE_IMAGE=ubuntu:20.04
 FROM ${BASE_IMAGE}
 
-USER root
+ARG ROOT_USER=root
+USER ${ROOT_USER}
 
 ENV TZ=Etc/UTC
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+    gdal-bin git \
+    htop \
     locales \
     lbzip2 \
     libfftw3-dev \
-    libgdal-dev \
-    libgeos-dev \
-    libgsl0-dev \
-    libgl1-mesa-dev \
-    libglu1-mesa-dev \
-    libhdf4-alt-dev \
-    libhdf5-dev \
-    libjq-dev \
-    libpq-dev \
-    libproj-dev \
-    libprotobuf-dev \
-    libnetcdf-dev \
-    libsqlite3-dev \
-    libssl-dev \
-    libudunits2-dev \
     libcairo2-dev \
-    libgit2-dev \
+    libgdal-dev libgeos-dev libgit2-dev libgsl0-dev \
+    libgl1-mesa-dev  libglu1-mesa-dev \
+    libhdf4-alt-dev libhdf5-dev \
+    libjq-dev \
+    libnetcdf-dev \
+    libpq-dev libproj-dev libprotobuf-dev \
+    libsqlite3-dev libssl-dev \
+    libudunits2-dev libunwind-dev \
     netcdf-bin \
-    postgis \
-    protobuf-compiler \
-    sqlite3 \
-    tk-dev \
-    unixodbc-dev \
-    gdal-bin \
-    texlive-latex-base \
+    postgis protobuf-compiler \
     rsync \
-    htop \
+    sqlite3 \
+    texlive-latex-base tk-dev \
+    unixodbc-dev \
     vim \
-    git \
-    libunwind-dev \
     wget
 
 # Configure locale

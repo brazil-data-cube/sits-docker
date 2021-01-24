@@ -24,27 +24,16 @@ RUN ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
 # install geospatial dependencies
 # based on: https://github.com/rocker-org/geospatial
 RUN install2.r --error \
-    RColorBrewer \
-    RNetCDF \
     classInt \
     deldir \
-    gstat \
+    geoR geosphere gstat \
     hdf5r \
-    mapdata \
-    maptools \
+    mapdata maptools \
     ncdf4 \
     proj4 \
-    raster \
-    rgdal \
-    rgeos \
-    rlas \
-    sf \
-    sp \
-    spacetime \
-    spatstat \
-    spdep \
-    geoR \
-    geosphere
+    RColorBrewer RNetCDF \
+    raster rgdal rgeos rlas \
+    sf sp spacetime spatstat spdep
 
 # install user extra packages
 COPY extras.R .
@@ -54,3 +43,13 @@ ARG SITS_ENVIRONMENT_TYPE=full
 RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
     && Rscript extras.R \
     && rm extras.R DESCRIPTION
+
+ARG BASE_USER=root
+USER ${BASE_USER}
+
+RUN echo "reticulate::install_miniconda()" | R --no-save
+
+RUN echo "keras::install_keras()" | R --no-save
+
+USER ${ROOT_USER}
+
