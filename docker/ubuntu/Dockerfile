@@ -40,6 +40,7 @@ RUN apt-get update \
     htop \
     vim \
     git \
+    libunwind-dev \
     wget
 
 # Configure locale
