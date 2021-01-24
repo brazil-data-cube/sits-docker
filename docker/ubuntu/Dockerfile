@@ -1,6 +1,8 @@
 ARG BASE_IMAGE=ubuntu:20.04
 FROM ${BASE_IMAGE}
 
+USER root
+
 ENV TZ=Etc/UTC
 ENV DEBIAN_FRONTEND=noninteractive
 
