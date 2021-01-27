@@ -34,6 +34,9 @@ RUN wget https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_VERSION}.de
     && gdebi ${RSTUDIO_VERSION}.deb -n \
     && rm ${RSTUDIO_VERSION}.deb
 
+RUN adduser --disabled-password --gecos "" sits \
+     && echo sits:sits | chpasswd
+
 # Configure tini entrypoint
 ENTRYPOINT ["tini", "--"]
 CMD ["/usr/local/bin/entrypoint.sh"]
