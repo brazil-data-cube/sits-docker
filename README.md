@@ -25,7 +25,7 @@ Then, open the URL `http://127.0.0.1:8787` in a web browser:
 ```shell
 firefox http://127.0.0.1:8787
 ```
-
+> To login use `sits` as user and password.
 
 ## Building the Docker Image
 
