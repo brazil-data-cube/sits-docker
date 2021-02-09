@@ -1,5 +1,5 @@
 # Install devtools, rmarkdown, knitr, testthat and Rcpp if not already available
-install.packages(c("rmarkdown", "Rcpp", "knitr", "testthat", "remotes"))
+install.packages(c("rmarkdown", "Rcpp", "knitr", "testthat", "remotes", "qpdf"))
 
 # check the environment type
 environment_type <- Sys.getenv("SITS_ENVIRONMENT_TYPE")

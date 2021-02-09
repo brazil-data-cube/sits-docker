@@ -30,7 +30,11 @@ RUN apt-get update \
     texlive-latex-base tk-dev \
     unixodbc-dev \
     vim \
-    wget
+    wget \
+    qpdf \
+    texlive-fonts-extra \
+    ghostscript \
+    pandoc
 
 # Configure locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
