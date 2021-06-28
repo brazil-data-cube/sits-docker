@@ -15,7 +15,7 @@ cd docker
 #
 SITS_BUILD_MODE=""
 SITS_TAG_PREFIX="bdc"
-SITS_TAG_VERSION="0.9.8"
+SITS_TAG_VERSION="0.12.0"
 
 SITS_R_VERSION="4"
 SITS_ENVIRONMENT_TYPE="full"
@@ -107,4 +107,16 @@ SITS_RSTUDIO_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-ubuntu-${SITS_UBUNTU_VERS
 docker build ${SITS_BUILD_MODE} \
        --build-arg BASE_IMAGE=${SITS_DOCKER_IMAGE_TAG} \
        -t ${SITS_RSTUDIO_DOCKER_IMAGE_TAG} \
+       --file Dockerfile  .
+
+#
+# Build RStudio (Dev) for SITS image
+#
+echo "Building RStudio for SITS image (Development mode)..."
+cd ../RStudio-pre-sits
+
+SITS_DEV_RSTUDIO_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-ubuntu-${SITS_UBUNTU_VERSION}-r-${SITS_R_VERSION}-rstudio-dev:${SITS_TAG_VERSION}"
+docker build ${SITS_BUILD_MODE} \
+       --build-arg BASE_IMAGE=${SITS_R_DOCKER_IMAGE_TAG} \
+       -t ${SITS_DEV_RSTUDIO_DOCKER_IMAGE_TAG} \
        --file Dockerfile  .
