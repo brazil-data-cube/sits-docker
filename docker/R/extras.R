@@ -3,7 +3,7 @@
 #
 install.packages(c("rmarkdown", "Rcpp", "knitr", 
                    "testthat", "remotes", "qpdf", 
-                   "shiny",   "pacman"))
+                   "shiny",   "pacman", "covr"))
 
 #
 # Check the environment type
