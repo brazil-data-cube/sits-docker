@@ -33,6 +33,9 @@ RUN apt-get update \
     wget \
     qpdf \
     texlive-fonts-extra \
+    texlive-latex-extra \
+    texlive-latex-recommended \
+    texlive-fonts-recommended \
     ghostscript \
     pandoc
 
