@@ -1,8 +1,8 @@
 #
 # Install devtools, rmarkdown, knitr, testthat and Rcpp if not already available
 #
-install.packages(c("rmarkdown", "Rcpp", "knitr", 
-                   "testthat", "remotes", "qpdf", 
+install.packages(c("rmarkdown", "Rcpp", "knitr",
+                   "testthat", "remotes", "qpdf",
                    "shiny",   "pacman", "covr"))
 
 #
@@ -17,7 +17,7 @@ remotes::install_deps(dependencies = environment_type)
 # Install keras
 #
 remotes::install_github("rstudio/reticulate@1.19")
-remotes::install_github("rstudio/keras@v2.4.0")
+remotes::install_github("rstudio/keras@v2.6.0")
 
 #
 # Web Time Series Service Client
