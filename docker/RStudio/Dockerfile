@@ -10,7 +10,7 @@ RUN apt-get update \
     gdebi-core \
     tini
 
-ARG RSTUDIO_VERSION=rstudio-server-1.4.1103-amd64
+ARG RSTUDIO_VERSION=rstudio-server-1.4.1717-amd64
 RUN wget https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_VERSION}.deb --no-check-certificate \
     && gdebi ${RSTUDIO_VERSION}.deb -n \
     && rm ${RSTUDIO_VERSION}.deb
