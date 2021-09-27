@@ -1,9 +1,9 @@
 #
 # Satellite Image Time Series
 #
-remotes::install_github("e-sensing/sits@v0.13.0-3", dependencies = FALSE)
+remotes::install_github("e-sensing/sits@v0.14.1", dependencies = FALSE)
 
 #
 # Satellite Image Time Series Example Datasets
 #
-remotes::install_github("e-sensing/sitsdata@39449b3d5b77b30f5cdb4cc99d23308082fd9fd4", dependencies = FALSE)
+remotes::install_github("e-sensing/sitsdata@39de9bf5c539837ea8d16b559570177e52d79ca7", dependencies = FALSE)
