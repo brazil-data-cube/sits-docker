@@ -9,6 +9,9 @@ RUN apt-get update -y \
     && apt-get install -y \
         gdebi-core \
         tini \
+        psmisc \
+        sudo \
+        libclang-dev \
     && rm -rf /var/lib/apt/lists/*
 
 ARG RSTUDIO_VERSION=rstudio-server-2021.09.1-372-amd64

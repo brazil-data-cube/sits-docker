@@ -8,7 +8,3 @@ ARG SITSDATA_COMMIT_REF
 
 RUN Rscript install.R \
     && rm install.R
-
-# Base user (non-root)
-RUN adduser --disabled-password --gecos "" sits \
-     && echo sits:sits | chpasswd
