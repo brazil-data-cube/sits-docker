@@ -1,6 +1,14 @@
-ARG BASE_IMAGE=bdc/sits-ubuntu-20.04-r:4.0.3
+ARG BASE_IMAGE=brazildatacube/sits-r:4
 FROM ${BASE_IMAGE}
 
-COPY install_sits.R .
+COPY install.R .
 
-RUN Rscript install_sits.R && rm install_sits.R
+ARG SITS_TAG_VERSION
+ARG SITSDATA_COMMIT_REF
+
+RUN Rscript install.R \
+    && rm install.R
+
+# Base user (non-root)
+RUN adduser --disabled-password --gecos "" sits \
+     && echo sits:sits | chpasswd

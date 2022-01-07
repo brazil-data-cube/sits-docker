@@ -1,19 +1,22 @@
-ARG BASE_IMAGE=bdc/sits-ubuntu:20.04
+ARG BASE_IMAGE=brazildatacube/sits-base:20.04
 FROM ${BASE_IMAGE}
 
 ENV TZ=Etc/UTC
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt install gnupg2 software-properties-common -y \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-
-RUN add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" \
+RUN apt update -y \
+    && apt install -y \
+        gnupg2 \
+        software-properties-common \
+    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 \
+    && add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" \
     && apt update -y \
     && apt-get install -y --no-install-recommends \
         r-base \
         r-base-dev \
         r-recommended \
-        littler
+        littler \
+    && rm -rf /var/lib/apt/lists/*
 
 # add littler in path
 # based on: https://github.com/rocker-org/rocker/commit/9a8c555427dd572d3778d3af31e3e55a37c8fb70
@@ -33,21 +36,24 @@ RUN install2.r --error \
     proj4 \
     RColorBrewer RNetCDF \
     raster rgdal rgeos rlas \
-    sf sp spacetime spatstat spdep
+    sf sp spacetime spatstat spdep \
+    rmarkdown \
+    Rcpp \
+    knitr \
+    testthat \
+    remotes \
+    qpdf \
+    shiny \
+    pacman \
+    covr \
+    withr \
+    devtools
 
 # install user extra packages
-COPY extras.R .
+COPY install.R .
 
 ARG SITS_TAG_VERSION
 ARG SITS_ENVIRONMENT_TYPE=full
 RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
-    && Rscript extras.R \
-    && rm extras.R DESCRIPTION
-
-ARG BASE_USER=root
-USER ${BASE_USER}
-
-RUN echo "reticulate::install_miniconda()" | R --no-save && \
-    echo "keras::install_keras()" | R --no-save
-
-USER ${ROOT_USER}
+    && Rscript install.R \
+    && rm install.R DESCRIPTION
