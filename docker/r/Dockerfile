@@ -15,8 +15,6 @@ LABEL "org.brazildatacube.title"="SITS Docker R Image (R image)"
 LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>"
 LABEL "org.brazildatacube.description"="Ubuntu-based R image for the SITS Docker images."
 
-LABEL "org.brazildatacube.sits-commit-ref"="862cb6bf6b41054c3709d0bb464406f35483621a"
-
 ENV TZ=Etc/UTC
 ENV DEBIAN_FRONTEND=noninteractive
 

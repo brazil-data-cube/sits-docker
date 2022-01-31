@@ -15,8 +15,6 @@ LABEL "org.brazildatacube.title"="SITS Docker Base Image (Base Image)"
 LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>"
 LABEL "org.brazildatacube.description"="Ubuntu-based base image for the SITS Docker images."
 
-LABEL "org.brazildatacube.sits-commit-ref"="862cb6bf6b41054c3709d0bb464406f35483621a"
-
 ARG ROOT_USER=root
 USER ${ROOT_USER}
 

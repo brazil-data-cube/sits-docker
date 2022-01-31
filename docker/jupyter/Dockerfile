@@ -15,8 +15,6 @@ LABEL "org.brazildatacube.title"="SITS Docker R Image (JupyterLab image)"
 LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>"
 LABEL "org.brazildatacube.description"="SITS-enabled JupyterLab with RStudio Docker Image."
 
-LABEL "org.brazildatacube.sits-commit-ref"="862cb6bf6b41054c3709d0bb464406f35483621a"
-
 ENV NB_USER=sits
 ENV DEFAULT_USER=sits
 
