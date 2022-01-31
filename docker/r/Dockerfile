@@ -1,9 +1,28 @@
+#
+# This file is part of SITS Docker.
+# Copyright (C) 2022 INPE.
+#
+# SITS Docker is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
 ARG BASE_IMAGE=brazildatacube/sits-base:20.04
 FROM ${BASE_IMAGE}
+
+#
+# Dockerfile metadata
+#
+LABEL "org.brazildatacube.title"="SITS Docker R Image (R image)"
+LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>"
+LABEL "org.brazildatacube.description"="Ubuntu-based R image for the SITS Docker images."
+
+LABEL "org.brazildatacube.sits-commit-ref"="862cb6bf6b41054c3709d0bb464406f35483621a"
 
 ENV TZ=Etc/UTC
 ENV DEBIAN_FRONTEND=noninteractive
 
+#
+# Installing the base packages
+#
 RUN apt update -y \
     && apt install -y \
         gnupg2 \
@@ -18,14 +37,18 @@ RUN apt update -y \
         littler \
     && rm -rf /var/lib/apt/lists/*
 
-# add littler in path
-# based on: https://github.com/rocker-org/rocker/commit/9a8c555427dd572d3778d3af31e3e55a37c8fb70
+#
+# Configuring the littler in path
+#  > based on: https://github.com/rocker-org/rocker/commit/9a8c555427dd572d3778d3af31e3e55a37c8fb70
+#
 RUN ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
     && ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
     && install.r docopt
 
-# install geospatial dependencies
-# based on: https://github.com/rocker-org/geospatial
+#
+# Installing GeoSpatial dependencies
+#  > based on: https://github.com/rocker-org/geospatial
+#
 RUN install2.r --error \
     classInt \
     deldir \
@@ -49,7 +72,9 @@ RUN install2.r --error \
     withr \
     devtools
 
-# install user extra packages
+#
+# Installing SITS dependencies packages
+#
 COPY install.R .
 
 ARG SITS_TAG_VERSION

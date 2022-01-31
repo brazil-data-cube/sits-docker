@@ -1,4 +1,11 @@
 #!/bin/bash
+#
+# This file is part of SITS Docker.
+# Copyright (C) 2022 INPE.
+#
+# SITS Docker is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
 # Script adapted from: https://github.com/rocker-org/rocker-versioned2/blob/071c6a3e3eabe0eb36706fc6f50df477ca41abc7/scripts/install_python.sh
 
 set -e
