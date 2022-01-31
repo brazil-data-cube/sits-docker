@@ -14,8 +14,10 @@ cd docker
 # General variables
 #
 SITS_BUILD_MODE=""
-SITS_TAG_PREFIX="bdc"
 SITS_TAG_VERSION="0.15.0-1"
+SITS_TAG_PREFIX="brazildatacube"
+
+SITSDATA_COMMIT_REF="39de9bf5c539837ea8d16b559570177e52d79ca7"
 
 SITS_R_VERSION="4"
 SITS_ENVIRONMENT_TYPE="full"
@@ -26,7 +28,7 @@ SITS_UBUNTU_VERSION="20.04"
 # General functions
 #
 usage() {
-    echo "Usage: $0 [-n] [-t <0.9.8>] [-p <bdc|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
+    echo "Usage: $0 [-n] [-t <0.9.8>] [-p <brazoldatacube|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
 
     exit 1;
 }
@@ -58,28 +60,28 @@ while getopts "n:t:p:h:e" o; do
 done
 
 #
-# Build a Linux Ubuntu image with all the dependencies already installed
+# Build a image with all the dependencies already installed
 #
-echo "Building base Linux Ubuntu image for SITS..."
-cd ubuntu
+echo "Building base image for SITS..."
+cd base
 
-SITS_BASE_UBUNTU_IMAGE="ubuntu:${SITS_UBUNTU_VERSION}"
-SITS_UBUNTU_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-ubuntu:${SITS_UBUNTU_VERSION}"
+SITS_BASE_IMAGE="ubuntu:${SITS_UBUNTU_VERSION}"
+SITS_BASE_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-base:${SITS_UBUNTU_VERSION}"
 
 docker build ${SITS_BUILD_MODE} \
-       --build-arg BASE_IMAGE=${SITS_BASE_UBUNTU_IMAGE} \
-       -t ${SITS_UBUNTU_IMAGE_TAG} \
+       --build-arg BASE_IMAGE=${SITS_BASE_IMAGE} \
+       -t ${SITS_BASE_IMAGE_TAG} \
        --file Dockerfile .
 
 #
 # Build R image with all the package dependencies already installed
 #
 echo "Building base R image for SITS..."
-cd ../R
+cd ../r
 
-SITS_R_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-ubuntu-${SITS_UBUNTU_VERSION}-r:${SITS_R_VERSION}"
+SITS_R_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-r:${SITS_R_VERSION}"
 docker build ${SITS_BUILD_MODE} \
-       --build-arg BASE_IMAGE=${SITS_UBUNTU_IMAGE_TAG} \
+       --build-arg BASE_IMAGE=${SITS_BASE_IMAGE_TAG} \
        --build-arg SITS_TAG_VERSION=v${SITS_TAG_VERSION} \
        --build-arg SITS_ENVIRONMENT_TYPE=${SITS_ENVIRONMENT_TYPE} \
        -t ${SITS_R_DOCKER_IMAGE_TAG} \
@@ -91,9 +93,11 @@ docker build ${SITS_BUILD_MODE} \
 echo "Building SITS image..."
 cd ../sits
 
-SITS_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-ubuntu-${SITS_UBUNTU_VERSION}-r-${SITS_R_VERSION}:${SITS_TAG_VERSION}"
+SITS_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits:${SITS_TAG_VERSION}"
 docker build ${SITS_BUILD_MODE} \
        --build-arg BASE_IMAGE=${SITS_R_DOCKER_IMAGE_TAG} \
+       --build-arg SITS_TAG_VERSION=v${SITS_TAG_VERSION} \
+       --build-arg SITSDATA_COMMIT_REF=${SITSDATA_COMMIT_REF} \
        -t ${SITS_DOCKER_IMAGE_TAG} \
        --file Dockerfile  .
 
@@ -101,22 +105,22 @@ docker build ${SITS_BUILD_MODE} \
 # Build RStudio for SITS image
 #
 echo "Building RStudio for SITS image..."
-cd ../RStudio
+cd ../rstudio
 
-SITS_RSTUDIO_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-ubuntu-${SITS_UBUNTU_VERSION}-r-${SITS_R_VERSION}-rstudio:${SITS_TAG_VERSION}"
+SITS_RSTUDIO_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-rstudio:${SITS_TAG_VERSION}"
 docker build ${SITS_BUILD_MODE} \
        --build-arg BASE_IMAGE=${SITS_DOCKER_IMAGE_TAG} \
        -t ${SITS_RSTUDIO_DOCKER_IMAGE_TAG} \
        --file Dockerfile  .
 
 #
-# Build RStudio (Dev) for SITS image
+# Build Jupyter for SITS image
 #
-echo "Building RStudio for SITS image (Development mode)..."
-cd ../RStudio-pre-sits
+echo "Building Jupyter for SITS image..."
+cd ../jupyter
 
-SITS_DEV_RSTUDIO_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-ubuntu-${SITS_UBUNTU_VERSION}-r-${SITS_R_VERSION}-rstudio-dev:${SITS_TAG_VERSION}"
+SITS_JUPYTER_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-jupyter:${SITS_TAG_VERSION}"
 docker build ${SITS_BUILD_MODE} \
-       --build-arg BASE_IMAGE=${SITS_R_DOCKER_IMAGE_TAG} \
-       -t ${SITS_DEV_RSTUDIO_DOCKER_IMAGE_TAG} \
+       --build-arg BASE_IMAGE=${SITS_RSTUDIO_DOCKER_IMAGE_TAG} \
+       -t ${SITS_JUPYTER_DOCKER_IMAGE_TAG} \
        --file Dockerfile  .

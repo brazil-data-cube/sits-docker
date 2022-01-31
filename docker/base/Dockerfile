@@ -7,7 +7,7 @@ USER ${ROOT_USER}
 ENV TZ=Etc/UTC
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update \
+RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
     gdal-bin git \
     htop \
@@ -37,7 +37,8 @@ RUN apt-get update \
     texlive-latex-recommended \
     texlive-fonts-recommended \
     ghostscript \
-    pandoc
+    pandoc \
+    && rm -rf /var/lib/apt/lists/*
 
 # Configure locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
@@ -47,3 +48,7 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
+
+# Base user (non-root)
+RUN adduser --disabled-password --gecos "" sits \
+     && echo sits:sits | chpasswd
