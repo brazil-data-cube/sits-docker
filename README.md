@@ -1,11 +1,10 @@
 # SITS Docker Images <img src=".github/sits-docker-sticker.png" align="right" width="150"/>
 
-[![Software License](https://img.shields.io/badge/license-MIT-green)](https://github.com//brazil-data-cube/sits-docker/blob/master/LICENSE) [![Drone build status](https://drone.dpi.inpe.br/api/badges/brazil-data-cube/sits-docker/status.svg)](https://drone.dpi.inpe.br/api/badges/brazil-data-cube/sits-docker) [![Software Life
+[![Software License](https://img.shields.io/badge/license-MIT-green)](https://github.com//brazil-data-cube/sits-docker/blob/master/LICENSE) [![Software Life
 Cycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![Release](https://img.shields.io/github/tag/brazil-data-cube/sits-docker.svg)](https://github.com/brazil-data-cube/sits-docker/releases) [![Docker Image Version (latest by date)](https://img.shields.io/docker/v/brazildatacube/sits?label=Docker%20Hub)](https://hub.docker.com/r/brazildatacube/sits) [![Docker Pulls](https://img.shields.io/docker/pulls/brazildatacube/sits)](https://hub.docker.com/r/brazildatacube/sits) [![Join us at
 Discord](https://img.shields.io/discord/689541907621085198?logo=discord&logoColor=ffffff&color=7389D8)](https://discord.com/channels/689541907621085198#)
 
 This is the official repository of Docker images for the [SITS R package](https://github.com/e-sensing/sits).
-
 
 ## Usage
 

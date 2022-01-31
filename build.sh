@@ -14,12 +14,11 @@ cd docker
 # General variables
 #
 SITS_BUILD_MODE=""
-SITS_TAG_VERSION="0.15.0-1"
+SITS_TAG_VERSION="0.16.0"
 SITS_TAG_PREFIX="brazildatacube"
 
-SITSDATA_COMMIT_REF="39de9bf5c539837ea8d16b559570177e52d79ca7"
+SITSDATA_COMMIT_REF="16c8fa721a378bef448a6efae826e6512e38b6f8"
 
-SITS_R_VERSION="4"
 SITS_ENVIRONMENT_TYPE="full"
 
 SITS_UBUNTU_VERSION="20.04"
@@ -66,7 +65,7 @@ echo "Building base image for SITS..."
 cd base
 
 SITS_BASE_IMAGE="ubuntu:${SITS_UBUNTU_VERSION}"
-SITS_BASE_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-base:${SITS_UBUNTU_VERSION}"
+SITS_BASE_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-base:${SITS_TAG_VERSION}"
 
 docker build ${SITS_BUILD_MODE} \
        --build-arg BASE_IMAGE=${SITS_BASE_IMAGE} \
@@ -79,7 +78,7 @@ docker build ${SITS_BUILD_MODE} \
 echo "Building base R image for SITS..."
 cd ../r
 
-SITS_R_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-r:${SITS_R_VERSION}"
+SITS_R_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-r:${SITS_TAG_VERSION}"
 docker build ${SITS_BUILD_MODE} \
        --build-arg BASE_IMAGE=${SITS_BASE_IMAGE_TAG} \
        --build-arg SITS_TAG_VERSION=v${SITS_TAG_VERSION} \
