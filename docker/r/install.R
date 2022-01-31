@@ -24,8 +24,8 @@ remotes::install_deps(dependencies = environment_type)
 #
 # Install keras
 #
-remotes::install_github("rstudio/reticulate@1.19")
-remotes::install_github("rstudio/keras@v2.6.0")
+remotes::install_github("rstudio/reticulate@1.24")
+remotes::install_github("rstudio/keras@v2.7.0")
 
 #
 # Web Time Series Service Client
