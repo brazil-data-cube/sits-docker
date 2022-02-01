@@ -19,7 +19,7 @@ The `composable images` approach was adopted in this repository to facilitate th
 In total, five images are available, with the following responsibilities:
 
 - `SITS Base`: Provides the base resources for building an **R** environment to allow the use of the SITS package (e.g., OS libraries for compiling geospatial dependencies, resources for using `LaTeX`, etc);
-- `SITS R`: Provides an environment with **R** installed along with all the libraries and dependencies needed to use SITS (e.g., `gdal`, `earth`, `sf`). It does not include the SITS package;
+- `SITS R`: Provides an environment with **R** installed along with all the libraries and dependencies needed to use SITS (e.g., `gdal`, `terra`, `sf`). It does not include the SITS package;
 - `SITS`: Provides installation of the SITS package;
 - `SITS Rstudio`: RStudio environment with SITS-enabled;
 - `SITS Jupyter`: Jupyter Notebook environment with SITS-enabled. It also provides access to an RStudio Server.
