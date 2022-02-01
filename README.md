@@ -87,10 +87,10 @@ To build the images with the Dockerfiles contained in this repository, it is pos
 - `-e`: SITS environment type (`full` or `minimal`. Default is `full`).
 - `-h`: show a help message.
 
-Below is an example of using the utility script. The tag name defined for the SITS image is `0.16.0`.
+Below is an example of using the utility script. The tag name defined for the SITS image is `0.16.1`.
 
 ```shell
-./build.sh -n -p brazildatacube -t 0.16.0
+./build.sh -n -p brazildatacube -t 0.16.1
 ```
 
 The above command will create the following images:
@@ -100,9 +100,10 @@ docker image ls | grep sits
 ```
 
 ```
-brazildatacube/sits-base      0.16.0     d3a624950f4c   8 hours ago         2.92GB
-brazildatacube/sits-r         0.16.0     c5f7e06b7655   6 hours ago         4.36GB
-brazildatacube/sits           0.16.0     577704cad80a   6 hours ago         4.54GB
-brazildatacube/sits-jupyter   0.16.0     3d3dc8157968   6 hours ago         5.72GB
-brazildatacube/sits-rstudio   0.16.0     45f0399e4ec8   6 hours ago         5.47GB
+brazildatacube/sits-jupyter   0.16.1     14a8d56a2194   6 hours ago    5.72GB
+brazildatacube/sits-rstudio   0.16.1     025012dc6355   6 hours ago    5.47GB
+brazildatacube/sits           0.16.1     f93b6afdecc6   6 hours ago    4.54GB
+brazildatacube/sits-r         0.16.1     81604f23ba15   6 hours ago    4.36GB
+brazildatacube/sits-base      0.16.1     d3a624950f4c   15 hours ago   2.92GB
+
 ```
