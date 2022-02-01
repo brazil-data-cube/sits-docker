@@ -16,9 +16,9 @@ In total, five images are available, with the following responsibilities:
 
 - `SITS Base`: Provides the base resources for building an **R** environment to allow the use of the SITS package (e.g., OS libraries for compiling geospatial dependencies, resources for using `LaTeX`, etc);
 - `SITS R`: Provides an environment with **R** installed along with all the libraries and dependencies needed to use SITS (e.g., `gdal`, `earth`, `sf`). It does not include the SITS package;
-- SITS`: Provides installation of the SITS package;
+- `SITS`: Provides installation of the SITS package;
 - `SITS Rstudio`: RStudio-ready environment with SITS-enabled;
-- SITS Jupyter`: Jupyter Notebook environment with SITS-enabled. It also provides access to an RStudio;
+- `SITS Jupyter`: Jupyter Notebook environment with SITS-enabled. It also provides access to an RStudio;
 
 If you want to get started, see below for a step-by-step guide to using the `RStudio` and `Jupyter Notebook` images that are ready to use and are available on [DockerHub](https://hub.docker.com/u/brazildatacube). However, you can also build these images on your machine if you prefer. To do this, see the `Building the Docker Image` section.
 
