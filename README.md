@@ -10,15 +10,19 @@ This is the official repository of Docker images for the [SITS R package](https:
 
 The `composable images` approach was adopted in this repository to facilitate the construction of SITS-enabled environments that allow the full use of the SITS package features. In this approach, following a hierarchical structure, the installations and configurations are done at different levels. The lower level provides the base capabilities and resources for the higher level images. Because of this, the relationship of these images generates a tree of dependencies, which is presented below.
 
-<img src=".github/arch/sits-docker-arch.png" align="center" width="640"/>
-
+<br/>
+<div align="center">
+ <img src=".github/arch/sits-docker-arch.png" width="640"/>
+</div>
+<br/>
+           
 In total, five images are available, with the following responsibilities:
 
 - `SITS Base`: Provides the base resources for building an **R** environment to allow the use of the SITS package (e.g., OS libraries for compiling geospatial dependencies, resources for using `LaTeX`, etc);
 - `SITS R`: Provides an environment with **R** installed along with all the libraries and dependencies needed to use SITS (e.g., `gdal`, `earth`, `sf`). It does not include the SITS package;
 - `SITS`: Provides installation of the SITS package;
-- `SITS Rstudio`: RStudio-ready environment with SITS-enabled;
-- `SITS Jupyter`: Jupyter Notebook environment with SITS-enabled. It also provides access to an RStudio;
+- `SITS Rstudio`: RStudio environment with SITS-enabled;
+- `SITS Jupyter`: Jupyter Notebook environment with SITS-enabled. It also provides access to an RStudio Server.
 
 If you want to get started, see below for a step-by-step guide to using the `RStudio` and `Jupyter Notebook` images that are ready to use and are available on [DockerHub](https://hub.docker.com/u/brazildatacube). However, you can also build these images on your machine if you prefer. To do this, see the `Building the Docker Image` section.
 
