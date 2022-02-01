@@ -28,13 +28,13 @@ If you want to get started, see below for a step-by-step guide to using the `RSt
 
 ## Using the SITS R Package with RStudio <img src=".github/logo/sits-docker-env-rstudio.png" align="right" width="120"/>
 
-To use the RStudio environment with SITS-enabled, you can run a container from the [brazildatacube/sits-rstudio:0.16.0](https://hub.docker.com/r/brazildatacube/sits-rstudio) image, which is made available on DockerHub. For this, the following command can be used:
+To use the RStudio environment with SITS-enabled, you can run a container from the [brazildatacube/sits-rstudio:0.16.1](https://hub.docker.com/r/brazildatacube/sits-rstudio) image, which is made available on DockerHub. For this, the following command can be used:
 
 ```shell
 docker run --detach \
            --publish 127.0.0.1:8787:8787 \
            --name my-sits-rstudio \
-           brazildatacube/sits-rstudio:0.16.0
+           brazildatacube/sits-rstudio:0.16.1
 ```
 
 Then, open the URL `http://127.0.0.1:8787` in a web browser:
@@ -49,13 +49,13 @@ firefox http://127.0.0.1:8787
 
 > In this image, its available the Jupyter Notebook environment together with RStudio.
 
-To use the Jupyter Notebook environment with SITS-enabled, you can run a container from the [brazildatacube/sits-jupyter:0.16.0](https://hub.docker.com/r/brazildatacube/sits-jupyter) image, which is made available on DockerHub. For this, the following command can be used:
+To use the Jupyter Notebook environment with SITS-enabled, you can run a container from the [brazildatacube/sits-jupyter:0.16.1](https://hub.docker.com/r/brazildatacube/sits-jupyter) image, which is made available on DockerHub. For this, the following command can be used:
 
 ```shell
 docker run --detach \
            --publish 127.0.0.1:8888:8888 \
            --name my-sits-jupyter \
-           brazildatacube/sits-jupyter:0.16.0
+           brazildatacube/sits-jupyter:0.16.1
 ```
 
 After running the above command, it is necessary to recover the Jupyter access token. To do this, use the command below:
