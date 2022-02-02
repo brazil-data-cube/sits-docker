@@ -80,3 +80,12 @@ ARG SITS_ENVIRONMENT_TYPE=full
 RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
     && Rscript install.R \
     && rm install.R DESCRIPTION
+
+ARG BASE_USER=root
+USER ${BASE_USER}
+
+RUN echo "reticulate::install_miniconda()" | R --no-save && \
+    echo "keras::install_keras()" | R --no-save
+
+USER ${ROOT_USER}
+
