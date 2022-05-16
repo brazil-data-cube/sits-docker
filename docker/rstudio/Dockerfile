@@ -34,7 +34,7 @@ RUN apt-get update -y \
         libclang-dev \
     && rm -rf /var/lib/apt/lists/*
 
-ARG RSTUDIO_VERSION=rstudio-server-2021.09.1-372-amd64
+ARG RSTUDIO_VERSION=rstudio-server-2022.02.2-485-amd64
 RUN wget https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_VERSION}.deb --no-check-certificate \
     && gdebi ${RSTUDIO_VERSION}.deb -n \
     && rm ${RSTUDIO_VERSION}.deb
