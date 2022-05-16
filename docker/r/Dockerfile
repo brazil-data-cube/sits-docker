@@ -84,8 +84,7 @@ RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DE
 ARG BASE_USER=root
 USER ${BASE_USER}
 
-RUN echo "reticulate::install_miniconda()" | R --no-save && \
-    echo "keras::install_keras()" | R --no-save
+RUN echo "torch::install_torch()" | R --no-save
 
 USER ${ROOT_USER}
 
