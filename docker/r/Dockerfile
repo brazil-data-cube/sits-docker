@@ -25,7 +25,9 @@ RUN apt update -y \
     && apt install -y \
         gnupg2 \
         software-properties-common \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 \
+	    gpg \
+        gpg-agent \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 \
     && add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" \
     && apt update -y \
     && apt-get install -y --no-install-recommends \
@@ -50,7 +52,7 @@ RUN ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
 RUN install2.r --error \
     classInt \
     deldir \
-    geoR geosphere gstat \
+    geosphere gstat \
     hdf5r \
     mapdata maptools \
     ncdf4 \
@@ -75,7 +77,7 @@ RUN install2.r --error \
 #
 COPY install.R .
 
-ARG SITS_TAG_VERSION
+ARG SITS_TAG_VERSION=v0.17.0
 ARG SITS_ENVIRONMENT_TYPE=full
 RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
     && Rscript install.R \
