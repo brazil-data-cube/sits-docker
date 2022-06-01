@@ -20,8 +20,8 @@ LABEL "org.brazildatacube.description"="SITS-enabled Docker Image."
 #
 COPY install.R .
 
-ARG SITS_TAG_VERSION=v0.17.0
-ARG SITSDATA_COMMIT_REF=02f93e63b780a4c2b0f23f50d1b554648a6683dc
+ARG SITS_TAG_VERSION
+ARG SITSDATA_COMMIT_REF
 
 RUN Rscript install.R \
     && rm install.R
