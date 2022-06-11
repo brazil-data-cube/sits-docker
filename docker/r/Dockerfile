@@ -78,7 +78,7 @@ RUN install2.r --error \
 COPY install.R .
 
 ARG SITS_TAG_VERSION
-ARG SITS_ENVIRONMENT_TYPE=full
+ARG SITS_ENVIRONMENT_TYPE
 RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
     && Rscript install.R \
     && rm install.R DESCRIPTION
@@ -86,6 +86,9 @@ RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DE
 ARG BASE_USER=root
 USER ${BASE_USER}
 
+#
+# Installing lantern dependencies
+#
 RUN echo "torch::install_torch()" | R --no-save
 
 USER ${ROOT_USER}
