@@ -34,7 +34,7 @@ To use the RStudio environment with SITS-enabled, you can run a container from t
 docker run --detach \
            --publish 127.0.0.1:8787:8787 \
            --name my-sits-rstudio \
-           brazildatacube/sits-rstudio:0.16.2
+           brazildatacube/sits-rstudio:1.0.0
 ```
 
 Then, open the URL `http://127.0.0.1:8787` in a web browser:
@@ -55,7 +55,7 @@ To use the Jupyter Notebook environment with SITS-enabled, you can run a contain
 docker run --detach \
            --publish 127.0.0.1:8888:8888 \
            --name my-sits-jupyter \
-           brazildatacube/sits-jupyter:0.16.2
+           brazildatacube/sits-jupyter:1.0.0
 ```
 
 After running the above command, it is necessary to recover the Jupyter access token. To do this, use the command below:
