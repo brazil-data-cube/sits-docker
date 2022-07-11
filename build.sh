@@ -14,7 +14,7 @@ cd docker
 # General variables
 #
 SITS_BUILD_MODE=""
-SITS_TAG_VERSION="0.17.0"
+SITS_TAG_VERSION="1.0.0"
 SITS_TAG_PREFIX="brazildatacube"
 
 SITSDATA_COMMIT_REF="02f93e63b780a4c2b0f23f50d1b554648a6683dc"
