@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=brazildatacube/sits-base:0.17.0
+ARG BASE_IMAGE=brazildatacube/sits-base-jupyter:0.17.0
 FROM ${BASE_IMAGE}
 
 #
@@ -15,8 +15,7 @@ LABEL "org.brazildatacube.title"="SITS Docker R Image (R image)"
 LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>"
 LABEL "org.brazildatacube.description"="Ubuntu-based R image for the SITS Docker images."
 
-ENV TZ=Etc/UTC
-ENV DEBIAN_FRONTEND=noninteractive
+USER ${ROOT_USER}
 
 #
 # Installing the base packages
@@ -77,19 +76,15 @@ RUN install2.r --error \
 #
 COPY install.R .
 
-ARG SITS_TAG_VERSION
+ARG SITS_TAG_VERSION=v0.17.0
 ARG SITS_ENVIRONMENT_TYPE
 RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
     && Rscript install.R \
     && rm install.R DESCRIPTION
-
-ARG BASE_USER=root
-USER ${BASE_USER}
 
 #
 # Installing lantern dependencies
 #
 RUN echo "torch::install_torch()" | R --no-save
 
-USER ${ROOT_USER}
-
+USER ${BASE_USER}

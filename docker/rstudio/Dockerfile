@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=brazildatacube/sits:0.17.0
+ARG BASE_IMAGE=brazildatacube/sits-sits-jupyter:0.17.0
 FROM ${BASE_IMAGE}
 
 #
@@ -14,6 +14,8 @@ FROM ${BASE_IMAGE}
 LABEL "org.brazildatacube.title"="SITS Docker R Image (RStudio image)"
 LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>"
 LABEL "org.brazildatacube.description"="SITS-enabled RStudio Docker Image."
+
+USER ${ROOT_USER}
 
 #
 # Preparing the entrypoint script.
@@ -44,3 +46,7 @@ RUN wget https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_VERSION}.de
 #
 ENTRYPOINT ["tini", "--"]
 CMD ["/usr/local/bin/entrypoint.sh"]
+
+USER ${BASE_USER}
+
+WORKDIR "${HOME}"
