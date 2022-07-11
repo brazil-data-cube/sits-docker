@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=brazildatacube/sits-base:0.17.0
+ARG BASE_IMAGE=brazildatacube/sits-base:1.0.0
 FROM ${BASE_IMAGE}
 
 #
@@ -76,7 +76,7 @@ RUN install2.r --error \
 #
 COPY install.R .
 
-ARG SITS_TAG_VERSION=v0.17.0
+ARG SITS_TAG_VERSION
 ARG SITS_ENVIRONMENT_TYPE
 RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
     && Rscript install.R \

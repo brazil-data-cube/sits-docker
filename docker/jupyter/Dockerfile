@@ -8,7 +8,7 @@
 # This Dockerfile is strongly based on the Dockerfile from Jupyter Stacks, 
 # see more: github.com/jupyter/docker-stacks
 #
-ARG BASE_IMAGE=brazildatacube/sits-rstudio:0.17.0
+ARG BASE_IMAGE=brazildatacube/sits-rstudio:1.0.0
 FROM ${BASE_IMAGE}
 
 #
