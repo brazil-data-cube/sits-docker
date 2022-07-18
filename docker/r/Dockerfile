@@ -87,4 +87,25 @@ RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DE
 #
 RUN echo "torch::install_torch()" | R --no-save
 
+#
+# Copy local file
+#
+COPY install_irkernel.sh create_user_dir.R /usr/local/bin/
+
+#
+# Install IRkernel for R kernel in jupyter notebooks and creating the 
+# user's package directory
+#
+RUN chmod -R a+rx /usr/local/bin/ \ 
+    && /usr/local/bin/install_irkernel.sh \ 
+    && fix-permissions "/home/${BASE_USER}" 
+
+
 USER ${BASE_USER}
+
+#
+# Create an R personal directory to the base user
+#
+RUN Rscript /usr/local/bin/create_user_dir.R
+
+WORKDIR "/home/${BASE_USER}"

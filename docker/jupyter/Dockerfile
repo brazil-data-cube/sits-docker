@@ -18,27 +18,15 @@ LABEL "org.brazildatacube.title"="SITS Docker R Image (JupyterLab image)"
 LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>"
 LABEL "org.brazildatacube.description"="SITS-enabled JupyterLab with RStudio Docker Image."
 
-USER root
+USER ${BASE_USER}
 
-#
-# Copy local files
-#
-COPY install_irkernel.sh /usr/local/bin/
-
-#
-# Install IRkernel for R kernel in jupyter notebooks
-#
-RUN chmod a+rx /usr/local/bin/install_irkernel.sh && \
-    /usr/local/bin/install_irkernel.sh && \
-    fix-permissions "/home/${NB_USER}"
-
-USER ${NB_UID}
-
+WORKDIR /tmp
 RUN mamba install --quiet --yes \
     'jupyter-rsession-proxy>=2.0' && \
     mamba clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
-    fix-permissions "/home/${NB_USER}"
+    fix-permissions "/home/${BASE_USER}" && \
+    chmod -R u+rwx "/home/${BASE_USER}/work"
 
 #
 # Defining the entrypoint CMD.
@@ -46,4 +34,4 @@ RUN mamba install --quiet --yes \
 ENTRYPOINT ["tini", "-g", "--"]
 CMD ["start-notebook.sh"]
 
-WORKDIR /home/${NB_USER}
+WORKDIR /home/${BASE_USER}
