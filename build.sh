@@ -64,7 +64,7 @@ done
 echo "Building base image for SITS..."
 cd base
 
-SITS_BASE_IMAGE="ubuntu:${SITS_UBUNTU_VERSION}"
+SITS_BASE_IMAGE="jupyter/base-notebook:ubuntu-${SITS_UBUNTU_VERSION}"
 SITS_BASE_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-base:${SITS_TAG_VERSION}"
 
 docker build ${SITS_BUILD_MODE} \
