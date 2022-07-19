@@ -17,8 +17,11 @@ LABEL "org.brazildatacube.description"="Ubuntu-based base image for the SITS Doc
 
 ARG ROOT_USER=root
 ARG BASE_USER=jovyan
-
 USER ${ROOT_USER}
+
+ENV TZ=Etc/UTC
+ENV DEBIAN_FRONTEND=noninteractive
+
 
 #
 # Installing the dependencies.
