@@ -22,7 +22,6 @@ USER ${ROOT_USER}
 ENV TZ=Etc/UTC
 ENV DEBIAN_FRONTEND=noninteractive
 
-
 #
 # Installing the dependencies.
 #
