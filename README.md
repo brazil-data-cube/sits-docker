@@ -28,7 +28,7 @@ If you want to get started, see below for a step-by-step guide to using the `RSt
 
 ## Using the SITS R Package with RStudio <img src=".github/logo/sits-docker-env-rstudio.png" align="right" width="120"/>
 
-To use the RStudio environment with SITS-enabled, you can run a container from the [brazildatacube/sits-rstudio:0.16.2](https://hub.docker.com/r/brazildatacube/sits-rstudio) image, which is made available on DockerHub. For this, the following command can be used:
+To use the RStudio environment with SITS-enabled, you can run a container from the [brazildatacube/sits-rstudio:0.17.0](https://hub.docker.com/r/brazildatacube/sits-rstudio) image, which is made available on DockerHub. For this, the following command can be used:
 
 ```shell
 docker run --detach \
