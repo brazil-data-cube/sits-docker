@@ -34,7 +34,7 @@ To use the RStudio environment with SITS-enabled, you can run a container from t
 docker run --detach \
            --publish 127.0.0.1:8787:8787 \
            --name my-sits-rstudio \
-           brazildatacube/sits-rstudio:0.16.2
+           brazildatacube/sits-rstudio:0.17.0
 ```
 
 Then, open the URL `http://127.0.0.1:8787` in a web browser:
@@ -49,13 +49,13 @@ firefox http://127.0.0.1:8787
 
 > In this image, its available the Jupyter Notebook environment together with RStudio.
 
-To use the Jupyter Notebook environment with SITS-enabled, you can run a container from the [brazildatacube/sits-jupyter:0.16.2](https://hub.docker.com/r/brazildatacube/sits-jupyter) image, which is made available on DockerHub. For this, the following command can be used:
+To use the Jupyter Notebook environment with SITS-enabled, you can run a container from the [brazildatacube/sits-jupyter:0.17.0](https://hub.docker.com/r/brazildatacube/sits-jupyter) image, which is made available on DockerHub. For this, the following command can be used:
 
 ```shell
 docker run --detach \
            --publish 127.0.0.1:8888:8888 \
            --name my-sits-jupyter \
-           brazildatacube/sits-jupyter:0.16.2
+           brazildatacube/sits-jupyter:0.17.0
 ```
 
 After running the above command, it is necessary to recover the Jupyter access token. To do this, use the command below:
@@ -82,7 +82,7 @@ firefox http://127.0.0.1:8888/?token=d8817e283ad216ef1d920bb5cdd125a1cd104c4374d
 To build the images with the Dockerfiles contained in this repository, it is possible to use the `build.sh` utility script. This script presents options for the customization of the images generated for the use of the SITS package. The script has the following options that can be used to customize the generated images:
 
 - `-n`: Build with `--no-cache` flag (Default uses pre-built image cache).  
-- `-t`: SITS Tag version used in generated image (Default is `0.9.8`).
+- `-t`: SITS Tag version used in generated image (Default is `0.17.0`).
 - `-p`: Image name prefix (Default is `bdc`).
 - `-e`: SITS environment type (`full` or `minimal`. Default is `full`).
 - `-h`: show a help message.
@@ -90,7 +90,7 @@ To build the images with the Dockerfiles contained in this repository, it is pos
 Below is an example of using the utility script. The tag name defined for the SITS image is `0.16.2`.
 
 ```shell
-./build.sh -n -p brazildatacube -t 0.16.2
+./build.sh -n -p brazildatacube -t 0.17.0
 ```
 
 The above command will create the following images:
