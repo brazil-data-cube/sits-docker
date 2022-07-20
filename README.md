@@ -100,9 +100,9 @@ docker image ls | grep sits
 ```
 
 ```
-brazildatacube/sits-jupyter   0.16.2     671bc71434d7   6 minutes ago    5.72GB
-brazildatacube/sits-rstudio   0.16.2     50352a04c021   9 minutes ago    5.47GB
-brazildatacube/sits           0.16.2     76ac1b85f475   10 minutes ago   4.54GB
-brazildatacube/sits-r         0.16.2     9275461aa8e3   12 minutes ago   4.36GB
-brazildatacube/sits-base      0.16.2     d3a624950f4c   16 hours ago     2.92GB
+brazildatacube/sits-jupyter   0.17.0         c51254d6c860   35 hours ago   7.11GB
+brazildatacube/sits-rstudio   0.17.0         5d62d682bfe0   35 hours ago   7.1GB
+brazildatacube/sits           0.17.0         db08a834e583   35 hours ago   6.36GB
+brazildatacube/sits-r         0.17.0         bd07ef72d112   35 hours ago   5.81GB
+brazildatacube/sits-base      0.17.0         897aca0ceb1d   37 hours ago   3.56GB
 ```
