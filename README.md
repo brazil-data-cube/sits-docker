@@ -49,7 +49,7 @@ firefox http://127.0.0.1:8787
 
 > In this image, its available the Jupyter Notebook environment together with RStudio.
 
-To use the Jupyter Notebook environment with SITS-enabled, you can run a container from the [brazildatacube/sits-jupyter:0.16.2](https://hub.docker.com/r/brazildatacube/sits-jupyter) image, which is made available on DockerHub. For this, the following command can be used:
+To use the Jupyter Notebook environment with SITS-enabled, you can run a container from the [brazildatacube/sits-jupyter:1.0.0](https://hub.docker.com/r/brazildatacube/sits-jupyter) image, which is made available on DockerHub. For this, the following command can be used:
 
 ```shell
 docker run --detach \
