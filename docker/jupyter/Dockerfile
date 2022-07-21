@@ -4,8 +4,11 @@
 #
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
-
-ARG BASE_IMAGE=brazildatacube/sits:0.15.0-1
+# 
+# This Dockerfile is strongly based on the Dockerfile from Jupyter Stacks, 
+# see more: github.com/jupyter/docker-stacks
+#
+ARG BASE_IMAGE=brazildatacube/sits-rstudio:0.17.0
 FROM ${BASE_IMAGE}
 
 #
@@ -15,23 +18,20 @@ LABEL "org.brazildatacube.title"="SITS Docker R Image (JupyterLab image)"
 LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>"
 LABEL "org.brazildatacube.description"="SITS-enabled JupyterLab with RStudio Docker Image."
 
-ENV NB_USER=sits
-ENV DEFAULT_USER=sits
+USER ${BASE_USER}
 
-#
-# Configuring the Python and Jupyter environments.
-#
-COPY install_python.sh install_python.sh
-COPY install_jupyter.sh install_jupyter.sh
-
-RUN ./install_python.sh
-RUN ./install_jupyter.sh
+WORKDIR /tmp
+RUN mamba install --quiet --yes \
+    'jupyter-rsession-proxy>=2.0' && \
+    mamba clean --all -f -y && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${BASE_USER}" && \
+    chmod -R u+rwx "/home/${BASE_USER}/work"
 
 #
 # Defining the entrypoint CMD.
 #
-CMD jupyter lab --ip 0.0.0.0
+ENTRYPOINT ["tini", "-g", "--"]
+CMD ["start-notebook.sh"]
 
-USER ${NB_USER}
-
-WORKDIR /home/${NB_USER}
+WORKDIR /home/${BASE_USER}

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # This file is part of SITS Docker.
-# Copyright (C) 2021 INPE.
+# Copyright (C) 2022 INPE.
 #
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -14,10 +14,10 @@ cd docker
 # General variables
 #
 SITS_BUILD_MODE=""
-SITS_TAG_VERSION="0.16.2"
+SITS_TAG_VERSION="0.17.0"
 SITS_TAG_PREFIX="brazildatacube"
 
-SITSDATA_COMMIT_REF="16c8fa721a378bef448a6efae826e6512e38b6f8"
+SITSDATA_COMMIT_REF="02f93e63b780a4c2b0f23f50d1b554648a6683dc"
 
 SITS_ENVIRONMENT_TYPE="full"
 
@@ -64,7 +64,7 @@ done
 echo "Building base image for SITS..."
 cd base
 
-SITS_BASE_IMAGE="ubuntu:${SITS_UBUNTU_VERSION}"
+SITS_BASE_IMAGE="jupyter/base-notebook:ubuntu-${SITS_UBUNTU_VERSION}"
 SITS_BASE_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-base:${SITS_TAG_VERSION}"
 
 docker build ${SITS_BUILD_MODE} \

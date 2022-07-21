@@ -6,12 +6,9 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 #
-# Install devtools, rmarkdown, knitr, testthat and Rcpp if not already available
+# Install extra dependencies
 #
-install.packages(c("rmarkdown", "Rcpp", "knitr",
-                   "testthat", "remotes", "qpdf",
-                   "shiny",   "pacman", "covr",
-                   "withr", "devtools"))
+install.packages(c("torch", "torchopt", "luz"))
 
 #
 # Check the environment type
@@ -20,14 +17,3 @@ environment_type <- Sys.getenv("SITS_ENVIRONMENT_TYPE")
 environment_type <- if (environment_type == "full") TRUE else NA
 
 remotes::install_deps(dependencies = environment_type)
-
-#
-# Install keras
-#
-remotes::install_github("rstudio/reticulate@1.24")
-remotes::install_github("rstudio/keras@v2.7.0")
-
-#
-# Web Time Series Service Client
-#
-install.packages("Rwtss")
