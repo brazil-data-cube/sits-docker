@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=brazildatacube/sits:0.15.0-1
+ARG BASE_IMAGE=brazildatacube/sits:1.0.0
 FROM ${BASE_IMAGE}
 
 #
@@ -14,6 +14,8 @@ FROM ${BASE_IMAGE}
 LABEL "org.brazildatacube.title"="SITS Docker R Image (RStudio image)"
 LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>"
 LABEL "org.brazildatacube.description"="SITS-enabled RStudio Docker Image."
+
+USER ${ROOT_USER}
 
 #
 # Preparing the entrypoint script.
@@ -34,10 +36,18 @@ RUN apt-get update -y \
         libclang-dev \
     && rm -rf /var/lib/apt/lists/*
 
-ARG RSTUDIO_VERSION=rstudio-server-2021.09.1-372-amd64
+ARG RSTUDIO_VERSION=rstudio-server-2022.07.0-548-amd64
 RUN wget https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_VERSION}.deb --no-check-certificate \
     && gdebi ${RSTUDIO_VERSION}.deb -n \
-    && rm ${RSTUDIO_VERSION}.deb
+    && rm ${RSTUDIO_VERSION}.deb \ 
+    && mkdir -p /var/lib/rstudio-server/monitor/log/ \
+    && chown rstudio-server:rstudio-server /var/lib/rstudio-server/monitor/log/
+
+#
+# Configuring the non-root base user for rstudio server only
+#
+RUN adduser --disabled-password --gecos "" sits \
+     && echo sits:sits | chpasswd
 
 #
 # Configure Tini entrypoint

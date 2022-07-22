@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=brazildatacube/sits-base:20.04
+ARG BASE_IMAGE=brazildatacube/sits-base:1.0.0
 FROM ${BASE_IMAGE}
 
 #
@@ -15,8 +15,7 @@ LABEL "org.brazildatacube.title"="SITS Docker R Image (R image)"
 LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>"
 LABEL "org.brazildatacube.description"="Ubuntu-based R image for the SITS Docker images."
 
-ENV TZ=Etc/UTC
-ENV DEBIAN_FRONTEND=noninteractive
+USER ${ROOT_USER}
 
 #
 # Installing the base packages
@@ -25,7 +24,9 @@ RUN apt update -y \
     && apt install -y \
         gnupg2 \
         software-properties-common \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 \
+	    gpg \
+        gpg-agent \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 \
     && add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" \
     && apt update -y \
     && apt-get install -y --no-install-recommends \
@@ -50,7 +51,7 @@ RUN ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
 RUN install2.r --error \
     classInt \
     deldir \
-    geoR geosphere gstat \
+    geosphere gstat \
     hdf5r \
     mapdata maptools \
     ncdf4 \
@@ -76,16 +77,35 @@ RUN install2.r --error \
 COPY install.R .
 
 ARG SITS_TAG_VERSION
-ARG SITS_ENVIRONMENT_TYPE=full
+ARG SITS_ENVIRONMENT_TYPE
 RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
     && Rscript install.R \
     && rm install.R DESCRIPTION
 
-ARG BASE_USER=root
+#
+# Installing lantern dependencies
+#
+RUN echo "torch::install_torch()" | R --no-save
+
+#
+# Copy local file
+#
+COPY install_irkernel.sh create_user_dir.R /usr/local/bin/
+
+#
+# Install IRkernel for R kernel in jupyter notebooks and creating the 
+# user's package directory
+#
+RUN chmod -R a+rx /usr/local/bin/ \ 
+    && /usr/local/bin/install_irkernel.sh \ 
+    && fix-permissions "/home/${BASE_USER}" 
+
+
 USER ${BASE_USER}
 
-RUN echo "reticulate::install_miniconda()" | R --no-save && \
-    echo "keras::install_keras()" | R --no-save
+#
+# Create an R personal directory to the base user
+#
+RUN Rscript /usr/local/bin/create_user_dir.R
 
-USER ${ROOT_USER}
-
+WORKDIR "/home/${BASE_USER}"
