@@ -7,8 +7,6 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 # configure log files
-mkdir -p /var/lib/rstudio-server/monitor/log/
-chown rstudio-server:rstudio-server /var/lib/rstudio-server/monitor/log/
 su rstudio-server -c 'touch /var/lib/rstudio-server/monitor/log/rstudio-server.log'
 
 # start rstudio daemon

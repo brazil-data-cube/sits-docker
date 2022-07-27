@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=brazildatacube/sits-r:4
+ARG BASE_IMAGE=brazildatacube/sits-r:1.0.0
 FROM ${BASE_IMAGE}
 
 #
@@ -14,6 +14,8 @@ FROM ${BASE_IMAGE}
 LABEL "org.brazildatacube.title"="SITS Docker R Image (SITS-enabled image)"
 LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>"
 LABEL "org.brazildatacube.description"="SITS-enabled Docker Image."
+
+USER ${ROOT_USER}
 
 #
 # Installing the SITS and SITS Data Packages.
@@ -25,3 +27,5 @@ ARG SITSDATA_COMMIT_REF
 
 RUN Rscript install.R \
     && rm install.R
+
+USER ${BASE_USER}

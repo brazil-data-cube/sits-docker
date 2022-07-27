@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=ubuntu:20.04
+ARG BASE_IMAGE=jupyter/base-notebook:ubuntu-20.04
 FROM ${BASE_IMAGE}
 
 #
@@ -16,6 +16,7 @@ LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>
 LABEL "org.brazildatacube.description"="Ubuntu-based base image for the SITS Docker images."
 
 ARG ROOT_USER=root
+ARG BASE_USER=jovyan
 USER ${ROOT_USER}
 
 ENV TZ=Etc/UTC
@@ -28,7 +29,6 @@ RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
     gdal-bin git \
     htop \
-    locales \
     lbzip2 \
     libfftw3-dev \
     libcairo2-dev \
@@ -54,22 +54,10 @@ RUN apt-get update -y \
     texlive-latex-recommended \
     texlive-fonts-recommended \
     ghostscript \
-    pandoc \
+    libharfbuzz-dev libfribidi-dev \
     && rm -rf /var/lib/apt/lists/*
 
-#
-# Configuring the O.S locale
-#
-RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-    dpkg-reconfigure --frontend=noninteractive locales && \
-    update-locale LANG=en_US.UTF-8
+ENV ROOT_USER="${ROOT_USER}" \
+    BASE_USER="${BASE_USER}"
 
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
-
-#
-# Configuring the non-root base user.
-#
-RUN adduser --disabled-password --gecos "" sits \
-     && echo sits:sits | chpasswd
+USER ${BASE_USER}
