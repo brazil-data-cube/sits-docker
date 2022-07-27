@@ -54,6 +54,7 @@ RUN apt-get update -y \
     texlive-latex-recommended \
     texlive-fonts-recommended \
     ghostscript \
+    libharfbuzz-dev libfribidi-dev \
     && rm -rf /var/lib/apt/lists/*
 
 ENV ROOT_USER="${ROOT_USER}" \
