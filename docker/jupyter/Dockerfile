@@ -28,10 +28,16 @@ RUN mamba install --quiet --yes \
     fix-permissions "/home/${BASE_USER}" && \
     chmod -R u+rwx "/home/${BASE_USER}/work"
 
+
+ARG SITS_NOTEBOOKS_REPO
+ARG SITS_TAG_VERSION
+
+WORKDIR /home/${BASE_USER}
+
+RUN git clone -c advice.detachedHead=false -b ${SITS_TAG_VERSION} https://github.com/${SITS_NOTEBOOKS_REPO} --single-branch
+
 #
 # Defining the entrypoint CMD.
 #
 ENTRYPOINT ["tini", "-g", "--"]
 CMD ["start-notebook.sh"]
-
-WORKDIR /home/${BASE_USER}
