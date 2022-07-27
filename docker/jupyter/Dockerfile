@@ -30,11 +30,11 @@ RUN mamba install --quiet --yes \
 
 
 ARG SITS_NOTEBOOKS_REPO
-ARG SITS_TAG_VERSION
+ARG SITS_TAG_NOTEBOOKS_REPO
 
 WORKDIR /home/${BASE_USER}
 
-RUN git clone -c advice.detachedHead=false -b ${SITS_TAG_VERSION} https://github.com/${SITS_NOTEBOOKS_REPO} --single-branch
+RUN git clone -c advice.detachedHead=false -b ${SITS_TAG_NOTEBOOKS_REPO} https://github.com/${SITS_NOTEBOOKS_REPO} --single-branch
 
 #
 # Defining the entrypoint CMD.

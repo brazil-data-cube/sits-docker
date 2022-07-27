@@ -16,6 +16,7 @@ cd docker
 SITS_BUILD_MODE=""
 SITS_TAG_VERSION="1.1.0"
 SITS_TAG_PREFIX="brazildatacube"
+SITS_TAG_NOTEBOOKS_REPO="1.1.0"
 SITS_NOTEBOOK_REPO="e-sensing/sitsnotebooks.git"
 
 SITSDATA_COMMIT_REF="02f93e63b780a4c2b0f23f50d1b554648a6683dc"
@@ -122,7 +123,7 @@ cd ../jupyter
 SITS_JUPYTER_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-jupyter:${SITS_TAG_VERSION}"
 docker build ${SITS_BUILD_MODE} \
        --build-arg BASE_IMAGE=${SITS_RSTUDIO_DOCKER_IMAGE_TAG} \
-       --build-arg SITS_TAG_VERSION=v${SITS_TAG_VERSION} \
+       --build-arg SITS_TAG_NOTEBOOKS_REPO=v${SITS_TAG_NOTEBOOKS_REPO} \
        --build-arg SITS_NOTEBOOKS_REPO=${SITS_NOTEBOOKS_REPO} \
        -t ${SITS_JUPYTER_DOCKER_IMAGE_TAG} \
        --file Dockerfile  .
