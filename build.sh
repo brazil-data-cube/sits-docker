@@ -27,7 +27,7 @@ SITS_UBUNTU_VERSION="20.04"
 # General functions
 #
 usage() {
-    echo "Usage: $0 [-n] [-t <0.9.8>] [-p <brazildatacube|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
+    echo "Usage: $0 [-n] [-t <1.0.0>] [-p <brazildatacube|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
 
     exit 1;
 }
