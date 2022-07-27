@@ -14,7 +14,7 @@ cd docker
 # General variables
 #
 SITS_BUILD_MODE=""
-SITS_TAG_VERSION="1.0.0"
+SITS_TAG_VERSION="1.1.0"
 SITS_TAG_PREFIX="brazildatacube"
 
 SITSDATA_COMMIT_REF="02f93e63b780a4c2b0f23f50d1b554648a6683dc"
@@ -27,7 +27,7 @@ SITS_UBUNTU_VERSION="20.04"
 # General functions
 #
 usage() {
-    echo "Usage: $0 [-n] [-t <0.9.8>] [-p <brazildatacube|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
+    echo "Usage: $0 [-n] [-t <1.1.0>] [-p <brazildatacube|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
 
     exit 1;
 }

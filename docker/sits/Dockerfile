@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=brazildatacube/sits-r:1.0.0
+ARG BASE_IMAGE=brazildatacube/sits-r:1.1.0
 FROM ${BASE_IMAGE}
 
 #
