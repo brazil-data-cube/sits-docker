@@ -8,7 +8,7 @@
 #
 # Install extra dependencies
 #
-install.packages(c("torch", "torchopt", "luz"))
+install.packages(c("torch", "torchopt", "luz", "tmap"))
 
 #
 # Check the environment type
