@@ -69,7 +69,8 @@ RUN install2.r --error \
     pacman \
     covr \
     withr \
-    devtools
+    devtools \
+    renv
 
 #
 # Installing SITS dependencies packages
