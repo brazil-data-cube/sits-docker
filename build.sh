@@ -14,13 +14,13 @@ cd docker
 # General variables
 #
 SITS_BUILD_MODE=""
-SITS_TAG_VERSION="1.2.0"
+SITS_TAG_VERSION="1.3.0"
 SITS_TAG_PREFIX="brazildatacube"
 
 SITS_TAG_NOTEBOOKS_REPO="1.1.0"
 SITS_NOTEBOOKS_REPO="e-sensing/sitsnotebooks.git"
 
-SITSDATA_COMMIT_REF="42d8db7255f3fc733b589fdb57717c8f0fbb0fb3"
+SITSDATA_COMMIT_REF="43d4a2f4ed319807b7efa657159e1235b8a3b409"
 
 SITS_ENVIRONMENT_TYPE="full"
 
@@ -30,7 +30,7 @@ SITS_UBUNTU_VERSION="20.04"
 # General functions
 #
 usage() {
-    echo "Usage: $0 [-n] [-t <1.2.0>] [-p <brazildatacube|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
+    echo "Usage: $0 [-n] [-t <1.3.0>] [-p <brazildatacube|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
 
     exit 1;
 }
