@@ -1,6 +1,6 @@
 #
 # This file is part of SITS Docker.
-# Copyright (C) 2022 INPE.
+# Copyright (C) 2023 INPE.
 #
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -8,7 +8,7 @@
 # This Dockerfile is strongly based on the Dockerfile from Jupyter Stacks, 
 # see more: github.com/jupyter/docker-stacks
 #
-ARG BASE_IMAGE=brazildatacube/sits-rstudio:1.3.0
+ARG BASE_IMAGE=brazildatacube/sits-rstudio:1.4.1
 FROM ${BASE_IMAGE}
 
 #

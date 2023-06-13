@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # This file is part of SITS Docker.
-# Copyright (C) 2022 INPE.
+# Copyright (C) 2023 INPE.
 #
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -14,13 +14,13 @@ cd docker
 # General variables
 #
 SITS_BUILD_MODE=""
-SITS_TAG_VERSION="1.3.0"
+SITS_TAG_VERSION="1.4.1"
 SITS_TAG_PREFIX="brazildatacube"
 
-SITS_TAG_NOTEBOOKS_REPO="1.1.0"
+SITS_TAG_NOTEBOOKS_REPO="1.4.1"
 SITS_NOTEBOOKS_REPO="e-sensing/sitsnotebooks.git"
 
-SITSDATA_COMMIT_REF="43d4a2f4ed319807b7efa657159e1235b8a3b409"
+SITSDATA_COMMIT_REF="c5a154210f1aa6e9f909cc674ddee7daa23567cc"
 
 SITS_ENVIRONMENT_TYPE="full"
 
@@ -30,7 +30,7 @@ SITS_UBUNTU_VERSION="20.04"
 # General functions
 #
 usage() {
-    echo "Usage: $0 [-n] [-t <1.3.0>] [-p <brazildatacube|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
+    echo "Usage: $0 [-n] [-t <${SITS_TAG_VERSION}>] [-p <brazildatacube|registry.dpi.inpe.br>] [-e <full|minimal>]" 1>&2;
 
     exit 1;
 }
