@@ -36,8 +36,8 @@ RUN apt-get update -y \
         libclang-dev \
     && rm -rf /var/lib/apt/lists/*
 
-ARG RSTUDIO_VERSION=rstudio-server-2023.03.1-446-amd64
-RUN wget https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_VERSION}.deb --no-check-certificate \
+ARG RSTUDIO_VERSION=rstudio-server-2023.06.0-421-amd64
+RUN wget https://download2.rstudio.org/server/focal/amd64/${RSTUDIO_VERSION}.deb --no-check-certificate \
     && gdebi ${RSTUDIO_VERSION}.deb -n \
     && rm ${RSTUDIO_VERSION}.deb \ 
     && mkdir -p /var/lib/rstudio-server/monitor/log/ \
