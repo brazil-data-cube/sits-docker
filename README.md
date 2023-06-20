@@ -91,6 +91,7 @@ Below is an example of using the utility script. The tag name defined for the SI
 
 ```shell
 ./build.sh -n -p brazildatacube -t 1.4.0
+
 ```
 
 The above command will create the following images:
