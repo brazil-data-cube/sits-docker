@@ -87,7 +87,7 @@ To build the images with the Dockerfiles contained in this repository, it is pos
 - `-e`: SITS environment type (`full` or `minimal`. Default is `full`).
 - `-h`: show a help message.
 
-<<<<<<< HEAD
+
 Below is an example of using the utility script. The tag name defined for the SITS image is `1.4.1`.
 
 ```shell
