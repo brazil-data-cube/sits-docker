@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # This file is part of SITS Docker.
-# Copyright (C) 2022 INPE.
+# Copyright (C) 2023 INPE.
 #
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -14,7 +14,8 @@ cd docker
 # General variables
 #
 SITS_BUILD_MODE=""
-SITS_TAG_VERSION="1.4.0"
+
+SITS_TAG_VERSION="1.4.1"
 SITS_TAG_PREFIX="brazildatacube"
 
 SITS_TAG_NOTEBOOKS_REPO="1.1.0"
