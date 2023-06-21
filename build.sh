@@ -14,13 +14,14 @@ cd docker
 # General variables
 #
 SITS_BUILD_MODE=""
+<<<<<<< HEAD
 SITS_TAG_VERSION="1.4.1"
 SITS_TAG_PREFIX="brazildatacube"
 
 SITS_TAG_NOTEBOOKS_REPO="1.1.0"
 SITS_NOTEBOOKS_REPO="e-sensing/sitsnotebooks.git"
 
-SITSDATA_COMMIT_REF="c5a154210f1aa6e9f909cc674ddee7daa23567cc"
+SITSDATA_COMMIT_REF="6da4443d88c7eca88ab3b94d5bdaad3c8b60d223"
 
 SITS_ENVIRONMENT_TYPE="full"
 

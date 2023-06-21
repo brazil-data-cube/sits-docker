@@ -28,13 +28,21 @@ If you want to get started, see below for a step-by-step guide to using the `RSt
 
 ## Using the SITS R Package with RStudio <img src=".github/logo/sits-docker-env-rstudio.png" align="right" width="120"/>
 
+<<<<<<< HEAD
 To use the RStudio environment with SITS-enabled, you can run a container from the [brazildatacube/sits-rstudio:1.4.1](https://hub.docker.com/r/brazildatacube/sits-rstudio) image, which is made available on DockerHub. For this, the following command can be used:
+=======
+To use the RStudio environment with SITS-enabled, you can run a container from the [brazildatacube/sits-rstudio:1.4.0](https://hub.docker.com/r/brazildatacube/sits-rstudio) image, which is made available on DockerHub. For this, the following command can be used:
+>>>>>>> 93afe6217bea4db067c8c84d39d9c1b6fdde5161
 
 ```shell
 docker run --detach \
            --publish 127.0.0.1:8787:8787 \
            --name my-sits-rstudio \
+<<<<<<< HEAD
            brazildatacube/sits-rstudio:1.4.1
+=======
+           brazildatacube/sits-rstudio:1.4.0
+>>>>>>> 93afe6217bea4db067c8c84d39d9c1b6fdde5161
 ```
 
 Then, open the URL `http://127.0.0.1:8787` in a web browser:
@@ -49,13 +57,21 @@ firefox http://127.0.0.1:8787
 
 > In this image, its available the Jupyter Notebook environment together with RStudio.
 
+<<<<<<< HEAD
 To use the Jupyter Notebook environment with SITS-enabled, you can run a container from the [brazildatacube/sits-jupyter:1.4.1](https://hub.docker.com/r/brazildatacube/sits-jupyter) image, which is made available on DockerHub. For this, the following command can be used:
+=======
+To use the Jupyter Notebook environment with SITS-enabled, you can run a container from the [brazildatacube/sits-jupyter:1.4.0](https://hub.docker.com/r/brazildatacube/sits-jupyter) image, which is made available on DockerHub. For this, the following command can be used:
+>>>>>>> 93afe6217bea4db067c8c84d39d9c1b6fdde5161
 
 ```shell
 docker run --detach \
            --publish 127.0.0.1:8888:8888 \
            --name my-sits-jupyter \
+<<<<<<< HEAD
            brazildatacube/sits-jupyter:1.4.1
+=======
+           brazildatacube/sits-jupyter:1.4.0
+>>>>>>> 93afe6217bea4db067c8c84d39d9c1b6fdde5161
 ```
 
 After running the above command, it is necessary to recover the Jupyter access token. To do this, use the command below:
@@ -82,15 +98,26 @@ firefox http://127.0.0.1:8888/?token=d8817e283ad216ef1d920bb5cdd125a1cd104c4374d
 To build the images with the Dockerfiles contained in this repository, it is possible to use the `build.sh` utility script. This script presents options for the customization of the images generated for the use of the SITS package. The script has the following options that can be used to customize the generated images:
 
 - `-n`: Build with `--no-cache` flag (Default uses pre-built image cache).  
+<<<<<<< HEAD
 - `-t`: SITS Tag version used in generated image (Default is `1.4.1`).
+=======
+- `-t`: SITS Tag version used in generated image (Default is `1.4.0`).
+>>>>>>> 93afe6217bea4db067c8c84d39d9c1b6fdde5161
 - `-p`: Image name prefix (Default is `bdc`).
 - `-e`: SITS environment type (`full` or `minimal`. Default is `full`).
 - `-h`: show a help message.
 
+<<<<<<< HEAD
 Below is an example of using the utility script. The tag name defined for the SITS image is `1.4.1`.
 
 ```shell
 ./build.sh -n -p brazildatacube -t 1.4.1
+=======
+Below is an example of using the utility script. The tag name defined for the SITS image is `1.4.0`.
+
+```shell
+./build.sh -n -p brazildatacube -t 1.4.0
+>>>>>>> 93afe6217bea4db067c8c84d39d9c1b6fdde5161
 
 ```
 
@@ -101,9 +128,17 @@ docker image ls | grep sits
 ```
 
 ```
+<<<<<<< HEAD
 brazildatacube/sits-jupyter   1.4.1     c84b566b3919   7 days ago          9.82GB
 brazildatacube/sits-rstudio   1.4.1     1a5bfbfb0493   7 days ago          9.56GB
 brazildatacube/sits           1.4.1     e5a8029eb6c1   7 days ago          8.75GB
 brazildatacube/sits-r         1.4.1     f6d54ebcb385   7 days ago          6.2GB
 brazildatacube/sits-base      1.4.1     2ef474f5c2fa   7 days ago          3.57GB
+=======
+brazildatacube/sits-jupyter   1.4.0     4d1bfdb55f8b   2 minutes ago    9.98GB
+brazildatacube/sits-rstudio   1.4.0     2cdb7bebcb87   3 minutes ago    9.72GB
+brazildatacube/sits           1.4.0     f55999a1dc69   4 minutes ago    8.91GB
+brazildatacube/sits-r         1.4.0     37c992e2404b   32 minutes ago   6.36GB
+brazildatacube/sits-base      1.4.0     2ef474f5c2fa   7 days ago       3.57GB
+>>>>>>> 93afe6217bea4db067c8c84d39d9c1b6fdde5161
 ```

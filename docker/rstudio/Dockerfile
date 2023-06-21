@@ -6,6 +6,7 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 ARG BASE_IMAGE=brazildatacube/sits:1.4.1
+
 FROM ${BASE_IMAGE}
 
 #

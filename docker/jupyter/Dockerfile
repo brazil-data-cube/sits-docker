@@ -9,6 +9,7 @@
 # see more: github.com/jupyter/docker-stacks
 #
 ARG BASE_IMAGE=brazildatacube/sits-rstudio:1.4.1
+
 FROM ${BASE_IMAGE}
 
 #
