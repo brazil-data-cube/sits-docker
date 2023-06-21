@@ -14,7 +14,7 @@ cd docker
 # General variables
 #
 SITS_BUILD_MODE=""
-<<<<<<< HEAD
+
 SITS_TAG_VERSION="1.4.1"
 SITS_TAG_PREFIX="brazildatacube"
 
