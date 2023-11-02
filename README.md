@@ -91,7 +91,7 @@ To build the images with the Dockerfiles contained in this repository, it is pos
 Below is an example of using the utility script. The tag name defined for the SITS image is `1.4.1`.
 
 ```shell
-./build.sh -n -p brazildatacube -t 1.4.1
+./build.sh -n -p brazildatacube -t 1.4.2-1
 ```
 
 The above command will create the following images:
